@@ -383,29 +383,107 @@ for p in PEIXES:
     nome, comp, alt, dorso, ventre, barb, cauda, padrao, extras, cp = p
     peixe(nome, comp, alt, dorso, ventre, barb, cauda, padrao, extras, cp, esp=2.2 + alt * 0.25)
 
-# ======================================================= varas de pesca (normal e lançada)
-def vara(nome, cores, brilho=''):
-    def desenho(lancada):
-        g = [['.'] * 16 for _ in range(16)]
-        for i in range(14):                       # cabo embaixo à esquerda, ponta em cima à direita
-            x, y = 1 + i, 14 - i
-            g[y][x] = 'h' if i < 4 else ('n' if i in (6, 9, 12) else 's')
-            if i < 3: g[y - 1][x] = 'h'
-        g[12][4] = 'm'; g[11][4] = 'm'; g[12][5] = 'm'        # molinete
-        g[1][14] = 't'
-        if not lancada:
-            for y in range(2, 10): g[y][14] = 'l'
-            g[10][14] = 'k'; g[10][13] = 'k'; g[9][13] = 'k'
-        return [''.join(l) for l in g]
-    esp = {'h': 1.8, 's': 1.1, 'n': 1.4, 'm': 2.6, 't': 1.4, 'l': 0.3, 'k': 0.6}
-    extrudar('pesca', nome, desenho(False), cores, esp, DISP_VARA, item=False, brilho=brilho, seed=9)
-    extrudar('pesca', nome + '_lancada', desenho(True), cores, esp, DISP_VARA, item=False, brilho=brilho, seed=9)
+# ======================================================= varas de pesca (3D, cubo a cubo)
+# A vara é montada em pé (eixo y, x=8 z=8) e todos os cubos giram -45° em z: fica na diagonal como a vara do jogo,
+# então o enquadramento na mão é o mesmo da vara vanilla. O "lado de baixo" da vara (molinete, passadores) é +x.
+# A linha (só na vara recolhida) é feita sem giro, caindo reta da ponta.
+GIRO = rot(-45, 'z', [8, 8, 8])
+
+def ponta_final(y):
+    d = y - 8; k = math.sqrt(0.5)
+    return 8 + d * k, 8 + d * k
+
+class Vara:
+    def __init__(s, nome): s.m = Mod('pesca', nome, 64); s.nome = nome
+    def c(s, de, ate, cor_, brilho=False, topo=None): s.m.cubo(de, ate, cor_, GIRO, brilho, topo)
+    def anel(s, y, r, h, cor_): s.c([8 - r, y, 8 - r], [8 + r, y + h, 8 + r], cor_)
+    def eixo(s, y0, y1, r, cor_, topo=None): s.c([8 - r, y0, 8 - r], [8 + r, y1, 8 + r], cor_, topo=topo)
+    def passador(s, y, cor_, tam=1.0):
+        s.c([8.5, y, 7.85], [9.2 + tam * 0.3, y + 0.3, 8.15], cor_)
+        s.c([9.2 + tam * 0.3, y - 0.35 * tam, 7.6], [9.7 + tam * 0.5, y + 0.65 * tam, 8.4], cor_)
+    def linha(s, topo_y, cor_l, cor_anzol, isca=None):
+        x, y = ponta_final(topo_y)
+        s.m.cubo([x - 0.15, y - 8.5, 7.85], [x + 0.15, y, 8.15], cor_l)
+        s.m.cubo([x - 0.6, y - 9.3, 7.8], [x + 0.2, y - 8.5, 8.2], cor_anzol)
+        s.m.cubo([x - 0.8, y - 9.3, 7.8], [x - 0.5, y - 8.6, 8.2], cor_anzol)
+        if isca: s.m.cubo([x - 0.45, y - 7.6, 7.55], [x + 0.45, y - 6.4, 8.45], isca[0], topo=isca[1])
+
+def montar(nome, corpo, linha):
+    for lancada in (False, True):
+        v = Vara(nome + ('_lancada' if lancada else ''))
+        topo = corpo(v)
+        if not lancada: linha(v, topo)
+        v.m.salvar(DISP_VARA)
+
+def bambu(v):
+    v.eixo(-3.2, -2.4, 1.05, '5a3a1e')                                   # ponteira do cabo
+    v.eixo(-2.4, 3.6, 1.0, '7a4a24')                                      # couro trançado
+    for y in (-1.6, 0.2, 2.0): v.anel(y, 1.12, 0.45, 'c8a060')
+    v.eixo(3.6, 12.5, 0.62, 'c8c070')                                     # gomos do bambu
+    v.eixo(12.5, 19.2, 0.45, 'd2c87a')
+    for y in (5.2, 8.0, 10.8, 13.4, 16.0): v.anel(y, 0.75 if y < 12 else 0.58, 0.45, '8a8a3a')
+    v.c([8.9, 0.4, 7.6], [9.7, 1.6, 8.4], '6a4a2a')                      # carretel de madeira
+    v.c([9.7, -0.7, 6.3], [12.0, -0.2, 9.7], '8a6a3a')
+    v.c([9.7, 2.2, 6.3], [12.0, 2.7, 9.7], '8a6a3a')
+    v.c([10.1, -0.2, 6.8], [11.6, 2.2, 9.2], 'e8e2d0')
+    v.c([10.5, 0.7, 9.7], [11.1, 1.3, 11.3], '5a3a1e')                   # manivela
+    v.c([10.3, 0.5, 11.3], [11.3, 1.5, 12.2], 'c8a060')
+    for y in (7.0, 12.0, 16.6): v.passador(y, '9a9a9a', 0.8)
+    v.eixo(19.2, 19.8, 0.32, '6a7a2a')
+    return 19.8
+
+def carbono(v):
+    v.eixo(-3.4, -2.6, 1.15, '1a1a1a')
+    v.anel(-2.6, 1.05, 0.3, 'c0262a')
+    v.eixo(-2.3, 2.2, 1.0, 'b08a5a')                                      # cortiça
+    for y in (-1.2, 0.5): v.anel(y, 1.04, 0.15, '8a6a40')
+    v.eixo(2.2, 3.2, 0.85, 'c8ccd0')                                      # porta-molinete cromado
+    v.eixo(3.2, 5.0, 0.95, '1e1e22')                                      # EVA
+    v.anel(5.0, 0.8, 0.4, 'c0262a')
+    v.eixo(5.4, 13.0, 0.5, '26262c')
+    v.eixo(13.0, 19.6, 0.36, '30303a')
+    for y in (7.4, 11.6, 15.2, 18.0):
+        v.anel(y - 0.4, 0.62 if y < 13 else 0.48, 1.0, 'c0262a')         # amarração vermelha
+        v.passador(y, 'dfe4ea', 1.1 if y < 10 else 0.8)
+    v.c([8.85, 2.4, 7.55], [9.9, 3.0, 8.45], 'aab0b4')                   # pé do molinete
+    v.c([9.9, 1.0, 6.9], [12.4, 4.2, 9.1], 'c8ccd0')                     # corpo
+    v.c([12.4, 1.3, 7.2], [13.0, 3.9, 8.8], 'd8b040')                    # carretel dourado
+    v.c([10.0, 1.2, 9.1], [10.6, 3.6, 9.5], '8a9094')
+    v.c([10.9, 2.3, 9.1], [11.5, 2.9, 11.0], '1a1a1a')                   # manivela
+    v.c([10.7, 2.1, 11.0], [11.7, 3.1, 12.0], 'c0262a')
+    v.c([9.6, 3.4, 6.4], [10.2, 4.0, 7.0], 'd8b040')                     # alça de recolher
+    v.eixo(19.6, 20.2, 0.3, 'c0262a')
+    return 20.2
+
+def iara(v):
+    v.eixo(-3.6, -2.4, 1.2, 'e8c040', topo='f2d060')                     # pomo de ouro
+    v.c([7.5, -4.4, 7.5], [8.5, -3.6, 8.5], 'f0ffff', brilho=True)        # pérola no pomo
+    v.eixo(-2.4, 3.4, 1.0, 'd8eef0')                                      # madrepérola
+    for y in (-1.4, 0.4, 2.2): v.anel(y, 1.08, 0.35, '7ad8d0')
+    v.c([7.4, 1.6, 5.8], [8.6, 4.6, 6.9], '5ae0d8')                      # barbatanas
+    v.c([7.4, 1.6, 9.1], [8.6, 4.6, 10.2], '5ae0d8')
+    v.c([7.6, 2.4, 5.2], [8.4, 4.2, 5.8], '3ac0b8')
+    v.c([7.6, 2.4, 10.2], [8.4, 4.2, 10.8], '3ac0b8')
+    v.eixo(3.4, 12.6, 0.55, '1e9a9a')
+    v.eixo(12.6, 20.0, 0.4, '2ab0aa')
+    for k, y in enumerate([4.2, 5.6, 7.0, 8.4, 9.8, 11.2, 13.4, 15.2, 17.0, 18.6]):
+        v.anel(y, 0.63 if y < 12.6 else 0.48, 0.3, 'e8c040' if k % 2 == 0 else 'f2d060')
+    for y in (8.6, 13.8, 17.8): v.passador(y, 'e8c040', 0.9)
+    v.c([8.9, 0.3, 7.5], [9.6, 1.5, 8.5], 'e8c040')                      # molinete-concha
+    v.c([9.6, -0.8, 6.6], [12.2, 2.6, 9.4], 'f0d8c8', topo='f8e8dc')
+    v.c([12.2, -0.4, 7.0], [12.8, 2.2, 9.0], 'e0b8a8')
+    for y in (-0.4, 0.6, 1.6): v.c([9.5, y, 6.5], [12.3, y + 0.3, 9.5], 'd8a898')
+    v.c([10.6, 0.6, 9.4], [11.2, 1.2, 11.0], 'e8c040')
+    v.c([10.3, 0.3, 11.0], [11.5, 1.5, 12.1], '7ad8d0', brilho=True)
+    v.c([7.35, 20.0, 7.35], [8.65, 21.3, 8.65], 'f0ffff', brilho=True)   # pérola brilhante na ponta
+    return 21.3
+
+montar('vara_bambu', bambu, lambda v, t: v.linha(t, 'e8e2d0', '9a9a9a', ('d84a2a', 'f0f0f0')))
+montar('vara_carbono', carbono, lambda v, t: v.linha(t, 'f0f0f0', 'b0b4b8', ('2a8a3a', 'e8d040')))
+montar('vara_iara', iara, lambda v, t: v.linha(t, 'a8f0ff', 'e8c040', ('f0ffff', 'f0ffff')))
+for nome in ('vara_bambu', 'vara_carbono', 'vara_iara'):
     json.dump({'model': {'type': 'minecraft:condition', 'property': 'minecraft:fishing_rod/cast',
                          'on_false': {'type': 'minecraft:model', 'model': f'big:item/pesca/{nome}'},
                          'on_true': {'type': 'minecraft:model', 'model': f'big:item/pesca/{nome}_lancada'}}},
               open(f'{R}/items/pesca/{nome}.json', 'w'), indent=1)
-
-vara('vara_bambu', {'h': ['7a5a2a', '6a4a22'], 's': ['b8b060', 'c8c070'], 'n': ['6a7a2a'], 'm': ['8a8a8a'], 't': ['6a7a2a'], 'l': ['e8e8e8'], 'k': ['9a9a9a']})
-vara('vara_carbono', {'h': ['2a2a2a', '1e1e1e'], 's': ['303036', '26262c'], 'n': ['c0262a'], 'm': ['c8ccd0', 'aab0b4'], 't': ['c0262a'], 'l': ['f0f0f0'], 'k': ['b0b4b8']})
-vara('vara_iara', {'h': ['b8862a', 'c8962e'], 's': ['1e9a9a', '2ab0aa'], 'n': ['e8c040'], 'm': ['e8c040', 'f2d060'], 't': ['e8f8ff'], 'l': ['a8f0ff'], 'k': ['e8c040']}, brilho='t')
 print('pronto')
