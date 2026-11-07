@@ -1,0 +1,373 @@
+{
+ "providers": [
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/sorriso.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/feliz.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/risada.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/piscada.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/apaixonado.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/legal.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/lingua.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/triste.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/chorando.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/bravo.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/surpreso.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/dormindo.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/enjoado.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/morto.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/vergonha.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/nerd.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/pensativo.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/chocado.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/anjo.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/diabinho.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/palhaco.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/coracao.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/coracao_partido.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/fogo.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/estrela.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/joinha.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/coroa.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/diamante.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/espada.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/dinheiro.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/peixe.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/caveira.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/trofeu.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/raio.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/check.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/xis.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/musica.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/creeper.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/presente.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/gg.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/emoji/picareta.png",
+   "ascent": 8,
+   "height": 9,
+   "chars": [
+    ""
+   ]
+  }
+ ]
+}
