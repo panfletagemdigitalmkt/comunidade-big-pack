@@ -42,7 +42,7 @@ DISP_ESCUDO_BLOQ = {
     'firstperson_lefthand': {'rotation': [0, 180, -5], 'translation': [5, 5, -11], 'scale': [1.25, 1.25, 1.25]}}
 
 
-def gerar(pasta, nome, linhas, MAT, modo='arma', frames=1, anim=None, verso=None, extras=None, seed=1):
+def gerar(pasta, nome, linhas, MAT, modo='arma', frames=1, anim=None, verso=None, extras=None, seed=1, disp=None, sem_item=False, textura=None):
     """modo 'arma': grade 32x32, girada 45° como as armas do jogo.
        modo 'escudo': grade 16x24 no espaço do escudo do jogo, com alça atrás."""
     random.seed(seed)
@@ -106,9 +106,9 @@ def gerar(pasta, nome, linhas, MAT, modo='arma', frames=1, anim=None, verso=None
         for de, ate in (([-1.5, -4, -4], [1.5, 4, -3]), ([-1.5, 3, -4], [1.5, 4, 1]), ([-1.5, -4, -4], [1.5, -3, 1])):
             els.append({'from': de, 'to': ate, 'faces': {f: {'uv': couro, 'texture': '#0'} for f in ('north', 'south', 'east', 'west', 'up', 'down')}})
     for e in (extras or []): els.append(e)
-    tex = f'big:item/{pasta}/{nome}'
+    tex = f'big:item/{pasta}/{textura or nome}'
     m = {'texture_size': [TW, TH], 'textures': {'0': tex, 'particle': tex}, 'elements': els,
-         'display': DISP_ARMA if modo == 'arma' else DISP_ESCUDO}
+         'display': disp or (DISP_ARMA if modo == 'arma' else DISP_ESCUDO)}
     for d in (f'models/item/{pasta}', f'textures/item/{pasta}', f'items/{pasta}'):
         os.makedirs(f'{R}/{d}', exist_ok=True)
     json.dump(m, open(f'{R}/models/item/{pasta}/{nome}.json', 'w'))
@@ -120,9 +120,9 @@ def gerar(pasta, nome, linhas, MAT, modo='arma', frames=1, anim=None, verso=None
                           'on_false': {'type': 'minecraft:model', 'model': f'big:item/{pasta}/{nome}'}}}
     else:
         item = {'model': {'type': 'minecraft:model', 'model': f'big:item/{pasta}/{nome}'}}
-    json.dump(item, open(f'{R}/items/{pasta}/{nome}.json', 'w'), indent=1)
-    img.save(f'{R}/textures/item/{pasta}/{nome}.png')
-    mc = f'{R}/textures/item/{pasta}/{nome}.png.mcmeta'
+    if not sem_item: json.dump(item, open(f'{R}/items/{pasta}/{nome}.json', 'w'), indent=1)
+    img.save(f'{R}/textures/item/{pasta}/{textura or nome}.png')
+    mc = f'{R}/textures/item/{pasta}/{textura or nome}.png.mcmeta'
     if frames > 1:
         json.dump({'animation': {'frametime': 6, 'interpolate': True, 'width': TW, 'height': TH}}, open(mc, 'w'))
     elif os.path.exists(mc):
