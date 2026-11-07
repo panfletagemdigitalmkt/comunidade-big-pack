@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "big:set_lobo"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "big:set_lobo"
+      }
+    ]
+  }
+}
