@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "big:set_corvo"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "big:set_corvo"
+      }
+    ]
+  }
+}
