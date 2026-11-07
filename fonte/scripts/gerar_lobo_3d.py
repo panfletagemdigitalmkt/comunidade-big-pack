@@ -85,11 +85,12 @@ olhoE=c.cubo('olho_e',[3.4,12.6,-1.7],[5.8,13.8,-1.4],'olho',brilho=True)
 olhoD=c.cubo('olho_d',[10.2,12.6,-1.7],[12.6,13.8,-1.4],'olho',brilho=True)
 c.cubo('sobrancelha_e',[3,13.9,-1.9],[6.4,14.7,-1.2],'escuro')
 c.cubo('sobrancelha_d',[9.6,13.9,-1.9],[13,14.7,-1.2],'escuro')
-for nome,x0,ang in (('e',1.5,-22.5),('d',11.0,22.5)):
+for nome,x0,ang in (('e',0.3,22.5),('d',12.2,-22.5)):   # orelhas pontudas abertas para fora
     rot={'angle':ang,'axis':'z','origin':[x0+1.75,16.5,6]}
-    c.cubo('orelha_base_'+nome,[x0,16.5,5],[x0+3.5,19.5,7.5],'pelo',rot=rot)
-    c.cubo('orelha_ponta_'+nome,[x0+0.75,19.5,5.5],[x0+2.75,21.5,7],'escuro',rot=rot)
-    c.cubo('orelha_dentro_'+nome,[x0+0.75,16.8,4.7],[x0+2.75,19,5],'rosa',rot=rot)
+    c.cubo('orelha_base_'+nome,[x0,16.2,4.5],[x0+3.5,19.5,7.8],'pelo',rot=rot)
+    c.cubo('orelha_meio_'+nome,[x0+0.5,19.5,5],[x0+3,22,7.3],'pelo',rot=rot)
+    c.cubo('orelha_ponta_'+nome,[x0+1,22,5.5],[x0+2.5,24.5,6.8],'escuro',rot=rot)
+    c.cubo('orelha_dentro_'+nome,[x0+0.75,16.6,4.2],[x0+2.75,21.5,4.5],'rosa',rot=rot)
 c.cubo('juba',[-1,-1,9],[17,4,17.5],'claro')
 # olhos fechando: as regiões das faces da frente dos olhos
 fr=[olhoE['north'],olhoD['north']]

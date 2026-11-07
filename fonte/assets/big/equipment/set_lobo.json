@@ -9,6 +9,11 @@
       {
         "texture": "big:set_lobo"
       }
+    ],
+    "wings": [
+      {
+        "texture": "big:set_lobo"
+      }
     ]
   }
 }

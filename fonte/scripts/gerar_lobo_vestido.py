@@ -50,6 +50,15 @@ box(cam,40,16,4,12,4,PELO)
 for x in range(80,112):
     for y in (56,57): cam.putpixel((x,y),random.choice(COURO))
     for y in (58,59,60,61,62,63): cam.putpixel((x,y),random.choice(CLARO))   # punho de pelo
+# ombreiras de pele presas ao peitoral (parte de cima dos braços)
+for x in range(88,96):
+    for y in range(32,40): cam.putpixel((x,y),mix(random.choice(CLARO),1.1))      # topo do ombro
+for x in range(80,112):
+    for y in range(40,48): cam.putpixel((x,y),mix(random.choice(CLARO),1.05-0.03*(y-40)))
+    for y in (48,49): cam.putpixel((x,y),random.choice(COURO))                   # tira de couro
+    if x%4==1:                                                                   # garras de osso penduradas
+        cam.putpixel((x,50),OSSO[0]); cam.putpixel((x,51),OSSO[1]); cam.putpixel((x,52),mix(OSSO[1],0.75))
+    if random.random()<0.5: cam.putpixel((x,47),mix(random.choice(PELO),0.8))      # franja irregular
 # botas (pernas u=0,v=16) só embaixo
 limpa(cam,0,32,32,32); box(cam,0,16,4,12,4,PELO); limpa(cam,0,40,32,14)
 for x in range(0,32):
@@ -65,6 +74,44 @@ box(cal,16,16,8,12,4,PELO); limpa(cal,32,32,48,18)
 for x in range(32,80):                        # cinto com fivela de ferro
     for y in (50,51,52): cal.putpixel((x,y),random.choice(COURO))
 ret(cal,46,49,4,5,FERRO,1.1)
-for d in ('humanoid','humanoid_leggings'): os.makedirs(f'{R}/{d}',exist_ok=True)
+for d in ('humanoid','humanoid_leggings','wings'): os.makedirs(f'{R}/{d}',exist_ok=True)
 cam.save(f'{R}/humanoid/set_lobo.png'); cal.save(f'{R}/humanoid_leggings/set_lobo.png')
 print('ok')
+
+# pele de lobo pendurada nas costas (camada "wings" do peitoral, presa ao corpo e solta no agachar)
+asa=Image.new('RGBA',(128,64),(0,0,0,0))
+u,v,w,h,d=44,0,20,40,4
+corte=[]
+for x in range(w):                      # fundo irregular, mais comprido no meio
+    borda=min(x,w-1-x)
+    corte.append(h-random.randint(0,3)-max(0,6-borda))
+def pele(x0,y0,ww,hh,luz,cols=None):
+    for x in range(ww):
+        lim=corte[cols[x]] if cols else hh
+        i=random.randrange(len(PELO))
+        for y in range(hh):
+            if y>=lim: continue
+            if random.random()<0.16: i=max(0,min(len(PELO)-1,i+random.choice((-1,1))))
+            pal=CLARO if y<6 else PELO
+            c=mix(pal[min(i,len(pal)-1)],luz*(1.08-0.3*y/hh))
+            if random.random()<0.1: c=mix(c,0.8)
+            if y>=lim-2: c=mix(c,0.75)
+            asa.putpixel((x0+x,y0+y),c)
+cols=list(range(w))
+pele(u+d,v+d,w,h,1.0,cols)              # frente
+pele(u+2*d+w,v+d,w,h,0.9,cols[::-1])    # costas (a que aparece)
+pele(u,v+d,d,h,0.85,[0]*d); pele(u+d+w,v+d,d,h,0.85,[w-1]*d)
+for x in range(w):                       # topo e base
+    for y in range(d):
+        asa.putpixel((u+d+x,v+y),mix(random.choice(CLARO),1.1)); asa.putpixel((u+d+w+x,v+y),mix(random.choice(PELO),0.7))
+for x0 in (u+d,u+2*d+w):                 # tira de couro com argola de ferro
+    for x in range(w):
+        for y in (v+d+7,v+d+8): asa.putpixel((x0+x,y),random.choice(COURO))
+    for (xx,yy) in ((3,6),(4,6),(2,7),(5,7),(2,8),(5,8),(3,9),(4,9)): asa.putpixel((x0+xx,v+d+yy),random.choice(FERRO))
+for x0 in (u+d,u+2*d+w):                 # patas com garras nas pontas de baixo
+    for px in (2,w-5):
+        for k in range(3):
+            y=corte[px+k]-1
+            asa.putpixel((x0+px+k,v+d+y),OSSO[k%2])
+asa.save(f'{R}/wings/set_lobo.png')
+print('asa ok')
