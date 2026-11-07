@@ -1,0 +1,14 @@
+{
+ "model": {
+  "type": "minecraft:condition",
+  "property": "minecraft:using_item",
+  "on_true": {
+   "type": "minecraft:model",
+   "model": "big:item/paladino/escudo_egide_bloqueando"
+  },
+  "on_false": {
+   "type": "minecraft:model",
+   "model": "big:item/paladino/escudo_egide"
+  }
+ }
+}

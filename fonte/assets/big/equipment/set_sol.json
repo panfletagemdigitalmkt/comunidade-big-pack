@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "big:set_sol"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "big:set_sol"
+      }
+    ]
+  }
+}
