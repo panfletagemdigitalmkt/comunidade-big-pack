@@ -45,6 +45,29 @@ for x in range(40,56):                       # gola de pelo claro mais grossa
 # costas: duas listras escuras
 for y in range(40,64):
     for x in (68,69,74,75): cam.putpixel((x,y),mix(cam.getpixel((x,y)),0.7))
+# escudo viking redondo pendurado nas costas (face de trás do corpo: x 64..80, y 40..64)
+import math
+VERM=[cor('8e1b1b'),cor('a12222'),cor('7a1717')]; BRANCO=[cor('d9d2c3'),cor('e6e0d2'),cor('cbc3b2')]
+cx,cy,rr=71.5,51.5,7.9
+for x in range(64,80):
+    for y in range(41,63):
+        dx,dy=x-cx,y-cy; r=math.hypot(dx,dy)
+        if r>rr: continue
+        ang=(math.degrees(math.atan2(dy,dx))+360)%360
+        if r>rr-1.2: c=mix(random.choice(FERRO),0.85 if dy>0 else 1.05)          # aro de ferro
+        elif r<2.0: c=mix(random.choice(FERRO),1.2 if dx+dy<0 else 0.8)         # bossa de ferro no meio
+        elif r<2.8: c=mix(random.choice(FERRO),0.6)
+        else:
+            c=random.choice(VERM if int(ang//45)%2==0 else BRANCO)              # gomos vermelho e branco
+            if int(r)%3==0 and random.random()<0.5: c=mix(c,0.88)              # tábuas de madeira
+            c=mix(c,1.08-0.25*(dy+rr)/(2*rr))
+        cam.putpixel((x,y),c)
+for a in range(0,360,45):                                                       # rebites no aro
+    x=int(round(cx+(rr-0.6)*math.cos(math.radians(a)))); y=int(round(cy+(rr-0.6)*math.sin(math.radians(a))))
+    if 64<=x<80: cam.putpixel((x,y),cor('e2e6ea'))
+for i in range(16):                                                             # alça de couro do ombro até o escudo
+    x,y=64+i,40+i//4
+    if math.hypot(x-cx,y-cy)>rr: cam.putpixel((x,y),random.choice(COURO))
 # braços (u=40,v=16, 4x12x4)
 box(cam,40,16,4,12,4,PELO)
 for x in range(80,112):
@@ -74,44 +97,7 @@ box(cal,16,16,8,12,4,PELO); limpa(cal,32,32,48,18)
 for x in range(32,80):                        # cinto com fivela de ferro
     for y in (50,51,52): cal.putpixel((x,y),random.choice(COURO))
 ret(cal,46,49,4,5,FERRO,1.1)
-for d in ('humanoid','humanoid_leggings','wings'): os.makedirs(f'{R}/{d}',exist_ok=True)
+for d in ('humanoid','humanoid_leggings'): os.makedirs(f'{R}/{d}',exist_ok=True)
 cam.save(f'{R}/humanoid/set_lobo.png'); cal.save(f'{R}/humanoid_leggings/set_lobo.png')
 print('ok')
 
-# pele de lobo pendurada nas costas (camada "wings" do peitoral, presa ao corpo e solta no agachar)
-asa=Image.new('RGBA',(128,64),(0,0,0,0))
-u,v,w,h,d=44,0,20,40,4
-corte=[]
-for x in range(w):                      # fundo irregular, mais comprido no meio
-    borda=min(x,w-1-x)
-    corte.append(h-random.randint(0,3)-max(0,6-borda))
-def pele(x0,y0,ww,hh,luz,cols=None):
-    for x in range(ww):
-        lim=corte[cols[x]] if cols else hh
-        i=random.randrange(len(PELO))
-        for y in range(hh):
-            if y>=lim: continue
-            if random.random()<0.16: i=max(0,min(len(PELO)-1,i+random.choice((-1,1))))
-            pal=CLARO if y<6 else PELO
-            c=mix(pal[min(i,len(pal)-1)],luz*(1.08-0.3*y/hh))
-            if random.random()<0.1: c=mix(c,0.8)
-            if y>=lim-2: c=mix(c,0.75)
-            asa.putpixel((x0+x,y0+y),c)
-cols=list(range(w))
-pele(u+d,v+d,w,h,1.0,cols)              # frente
-pele(u+2*d+w,v+d,w,h,0.9,cols[::-1])    # costas (a que aparece)
-pele(u,v+d,d,h,0.85,[0]*d); pele(u+d+w,v+d,d,h,0.85,[w-1]*d)
-for x in range(w):                       # topo e base
-    for y in range(d):
-        asa.putpixel((u+d+x,v+y),mix(random.choice(CLARO),1.1)); asa.putpixel((u+d+w+x,v+y),mix(random.choice(PELO),0.7))
-for x0 in (u+d,u+2*d+w):                 # tira de couro com argola de ferro
-    for x in range(w):
-        for y in (v+d+7,v+d+8): asa.putpixel((x0+x,y),random.choice(COURO))
-    for (xx,yy) in ((3,6),(4,6),(2,7),(5,7),(2,8),(5,8),(3,9),(4,9)): asa.putpixel((x0+xx,v+d+yy),random.choice(FERRO))
-for x0 in (u+d,u+2*d+w):                 # patas com garras nas pontas de baixo
-    for px in (2,w-5):
-        for k in range(3):
-            y=corte[px+k]-1
-            asa.putpixel((x0+px+k,v+d+y),OSSO[k%2])
-asa.save(f'{R}/wings/set_lobo.png')
-print('asa ok')
