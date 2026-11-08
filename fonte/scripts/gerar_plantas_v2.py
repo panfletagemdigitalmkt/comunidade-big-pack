@@ -36,7 +36,11 @@ class Mod:
 
     def cubo(s, de, ate, c, r=None, brilho=False, topo=None, veio=False):
         faces = {}
+        fina = min(ate[i] - de[i] for i in range(3)) <= 0.36       # folha: as bordas finas quase não aparecem
+        no_chao = de[1] <= CH + 0.05                                  # face de baixo encostada na terra nunca aparece
         for f, l in (('up', 1.12), ('down', 0.72), ('north', 0.96), ('south', 0.96), ('east', 0.86), ('west', 0.86)):
+            if fina and f not in ('up', 'down'): continue
+            if f == 'down' and no_chao: continue
             faces[f] = {'uv': s.amostra(topo if (f == 'up' and topo) else c, l, veio and f in ('up', 'down')), 'texture': '#0'}
         for v in de + ate: assert -16 <= v <= 32, (s.nome, de, ate)
         e = {'from': [round(v, 3) for v in de], 'to': [round(v, 3) for v in ate], 'faces': faces}
@@ -71,7 +75,7 @@ class Mod:
         json.dump({'texture_size': [s.tam, s.tam], 'textures': {'0': tex, 'particle': tex}, 'elements': s.el, 'display': disp},
                   open(f'{R}/models/item/fazenda/{s.nome}.json', 'w'))
         s.img.save(f'{R}/textures/item/fazenda/{s.nome}.png')
-        print(s.nome, len(s.el), 'cubos')
+        print(s.nome, len(s.el), 'cubos', sum(len(e['faces']) for e in s.el), 'faces')
 
 
 CH = -1.0
@@ -103,10 +107,10 @@ def milho(s):
                 ang = -22.5 if d in 'ES' else 22.5
                 if eixo == 'x': ang = -ang
                 r = rot(ang, eixo, [px, y, pz])
-                m.cubo([x0, y, z0], [x0 + 2, y + 5.5, z0 + 2], 'a8c86a', r)      # palha
+                m.cubo([x0 + 0.2, y, z0 + 0.2], [x0 + 1.8, y + 4.2, z0 + 1.8], '8fb85a', r)      # palha
                 if s == 3:
-                    m.cubo([x0 + 0.25, y + 2.6, z0 + 0.25], [x0 + 1.75, y + 6.2, z0 + 1.75], 'f2c230', r, topo='ffd84a')
-                    m.cubo([x0 + 0.7, y + 6.2, z0 + 0.7], [x0 + 1.3, y + 7.6, z0 + 1.3], 'b0703a', r)   # cabelo
+                    m.cubo([x0 + 0.1, y + 1.6, z0 + 0.1], [x0 + 1.9, y + 5.4, z0 + 1.9], 'f2c230', r, topo='ffd84a')
+                    m.cubo([x0 + 0.7, y + 5.4, z0 + 0.7], [x0 + 1.3, y + 6.6, z0 + 1.3], 'b0703a', r)   # cabelo
         if s == 3:
             top = CH + h
             m.cubo([px - 0.3, top, pz - 0.3], [px + 0.3, top + 3.2, pz + 0.3], 'd8b56a')
