@@ -1,0 +1,54 @@
+{
+ "providers": [
+  {
+   "type": "space",
+   "advances": {
+    "": -1,
+    "": -2,
+    "": -4,
+    "": -8,
+    "": -16,
+    "": -32,
+    "": -64,
+    "": -128,
+    "": -256
+   }
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/gui/inicio.png",
+   "ascent": 13,
+   "height": 222,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/gui/culturas.png",
+   "ascent": 13,
+   "height": 222,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/gui/cultura.png",
+   "ascent": 13,
+   "height": 222,
+   "chars": [
+    ""
+   ]
+  },
+  {
+   "type": "bitmap",
+   "file": "big:font/gui/perfil.png",
+   "ascent": 13,
+   "height": 222,
+   "chars": [
+    ""
+   ]
+  }
+ ]
+}
