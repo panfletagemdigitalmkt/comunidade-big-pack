@@ -263,6 +263,86 @@ def estufa(nome, borda):
 for f in (composteira, moinho, prensa, tacho, espremedor, moenda, torrefador, descarocador, desidratador, secador, refinador, tear,
           caixa_dagua, bomba, aspersor, filtro):
     f()
+
+
+def canal():
+    m = Maq('maquina_canal')
+    m.c([0, 0, 3], [16, 5, 13], PEDRA2, topo=PEDRA)
+    m.c([0, 2, 5], [16, 4.6, 11], '2a7ab8', topo='38a0d8')
+    m.c([0, 5, 3], [16, 6, 4], PEDRA)
+    m.c([0, 5, 12], [16, 6, 13], PEDRA)
+    m.salvar()
+
+
+def espantalho():
+    m = Maq('maquina_espantalho')
+    m.c([7.3, 0, 7.3], [8.7, 14, 8.7], MAD2)
+    m.c([1, 9, 7.4], [15, 10.2, 8.6], MAD2)
+    m.c([4.5, 5, 6], [11.5, 11, 10], '4a6ab0', topo='5a7ac0')
+    m.c([1, 8.6, 6.6], [4.6, 10.6, 9.4], '4a6ab0')
+    m.c([11.4, 8.6, 6.6], [15, 10.6, 9.4], '4a6ab0')
+    m.c([0.4, 8.2, 7], [1.2, 10.6, 9], 'e8d070')
+    m.c([14.8, 8.2, 7], [15.6, 10.6, 9], 'e8d070')
+    m.c([5.5, 11, 5.5], [10.5, 15, 10.5], 'e8d6ae', topo='d8c69e')
+    m.c([6.6, 12.6, 5.4], [7.4, 13.4, 5.6], '3a2818')
+    m.c([8.6, 12.6, 5.4], [9.4, 13.4, 5.6], '3a2818')
+    m.c([4, 14.6, 4], [12, 15.4, 12], 'd4a017', topo='e8c040')
+    m.c([5.5, 15.4, 5.5], [10.5, 17.5, 10.5], 'd4a017', topo='e8c040')
+    m.salvar()
+
+
+def cesto():
+    m = Maq('maquina_cesto')
+    m.c([3, 0, 3], [13, 5, 13], 'a8743a', topo='8a5a2a')
+    for (x, z, c) in ((4, 4, 'e0263b'), (8, 4.4, 'f2c230'), (5, 8.4, 'e8751a'), (9, 9, '7a3aa0'), (6.4, 6.4, '4f9a3a')):
+        m.c([x, 5, z], [x + 3, 7.6, z + 3], c)
+    m.c([7.4, 5, 2.6], [8.6, 10, 3.4], MAD2)
+    m.c([7.4, 9, 3.4], [8.6, 10, 12.6], MAD2)
+    m.c([7.4, 5, 12.6], [8.6, 10, 13.4], MAD2)
+    m.salvar()
+
+
+def placa():
+    m = Maq('maquina_placa')
+    m.c([3, 0, 7.3], [4.4, 10, 8.7], MAD2)
+    m.c([11.6, 0, 7.3], [13, 10, 8.7], MAD2)
+    m.c([1, 7, 7], [15, 14, 9], MAD, topo=MAD3)
+    m.c([2, 8, 6.6], [14, 13, 7.0], 'e7d6ae')
+    for x in (3.2, 5.6, 8, 10.4): m.c([x, 9.6, 6.4], [x + 1.6, 11.4, 6.6], '4d7c0f')
+    m.salvar()
+
+
+def carrinho():
+    m = Maq('maquina_carrinho')
+    m.c([3, 3, 2], [13, 8, 12], 'a8acb0', topo='6a7078')
+    m.c([4, 7, 3], [12, 8.4, 11], 'e8751a')
+    m.c([5, 8.4, 4], [9, 11, 8], 'e8751a', topo='d86a14')
+    m.c([8, 8.4, 6], [11, 10.4, 10], 'f2c230')
+    m.c([6.5, 0, 0], [9.5, 3, 3], '3a3a3a')
+    m.c([3.6, 0, 11], [4.6, 3.4, 12], FERRO2)
+    m.c([11.4, 0, 11], [12.4, 3.4, 12], FERRO2)
+    m.c([3.6, 6, 12], [4.6, 7, 16], MAD2)
+    m.c([11.4, 6, 12], [12.4, 7, 16], MAD2)
+    m.salvar()
+
+
+def chapeu():
+    m = Maq('chapeu_palha')
+    m.c([-1, 13.6, -1], [17, 14.8, 17], 'd4a017', topo='e8c040')
+    m.c([2.4, 14.8, 2.4], [13.6, 18.4, 13.6], 'd4a017', topo='e8c848')
+    m.c([2.2, 14.8, 2.2], [13.8, 15.8, 13.8], 'b81a14')
+    tex = 'big:item/fazenda/chapeu_palha'
+    disp = dict(DISP_BLOCO)
+    disp['head'] = {'rotation': [0, 180, 0], 'translation': [0, 0, 0], 'scale': [0.625, 0.625, 0.625]}
+    disp['gui'] = {'rotation': [30, 225, 0], 'translation': [0, -4, 0], 'scale': [0.6, 0.6, 0.6]}
+    json.dump({'texture_size': [m.tam, m.tam], 'textures': {'0': tex, 'particle': tex}, 'elements': m.el, 'display': disp},
+              open(f'{R}/models/item/fazenda/chapeu_palha.json', 'w'))
+    m.img.save(f'{R}/textures/item/fazenda/chapeu_palha.png')
+    item_def('chapeu_palha')
+
+
+for f in (canal, espantalho, cesto, placa, carrinho, chapeu):
+    f()
 deposito('maquina_deposito', MAD, MAD3, '5a5a5a')
 deposito('maquina_armazem', '8a6a2a', 'b8902a', 'a8acb0')
 estufa('maquina_estufa', '4d7c0f')

@@ -250,11 +250,11 @@ cartao(d, 43, 18, 131, 52)
 cartao(d, 132, 17, 211, 53, hx('65a30d'), hx('1f150e'))
 for i in range(4): poco(d, 7 + i % 2, i // 2, hx('65a30d'))
 
-cartao(d, -36, 54, 113, 124)
+cartao(d, -36, 54, 115, 124)
 for r in range(2, 6):
     poco(d, 0, r)
-    if r > 2: ret(d, -32, 17 + 18 * r, 111, 17 + 18 * r, fill=BORDA)
-for r in range(2, 6): botao(d, 115, 17 + 18 * r + 1, 168, 17 + 18 * r + 17)
+    if r > 2: ret(d, -32, 17 + 18 * r, 113, 17 + 18 * r, fill=BORDA)
+for r in range(2, 6): botao(d, 117, 17 + 18 * r + 1, 168, 17 + 18 * r + 17)
 salvar_fundo('maquina', img)
 
 # ---- equipamento (água / estufa)
@@ -267,7 +267,7 @@ salvar_fundo('equipamento', img)
 # ---- depósito
 img, d = base()
 for c in range(5): poco(d, c, 0)
-cartao(d, 96, 18, 211, 34)
+botao(d, 133, 18, 168, 34)
 for r in range(1, 5):
     for c in range(9): poco(d, c, r)
 ry = 17 + 18 * 5
@@ -317,6 +317,15 @@ cartao(d, 44, 89, 211, 124)
 botao(d, 133, 92, 168, 121)
 salvar_fundo('livro', img)
 
+# ---- Feira dos selos
+img, d = base()
+cartao(d, -36, 18, 211, 34)
+for c in range(9): poco(d, c, 1, hx('65a30d') if c < 5 else POCO_BORDA)
+cartao(d, -36, 72, 211, 88)
+for c in range(9): poco(d, c, 3, hx('a16207') if c < 5 else POCO_BORDA)
+cartao(d, -36, 95, 211, 124)
+salvar_fundo('selos', img)
+
 # ---- Tião
 img, d = base()
 cartao(d, -36, 18, 211, 50)
@@ -327,7 +336,7 @@ salvar_fundo('tiao', img)
 
 # ================================================================== fonte big:gui
 FUNDOS = ['inicio', 'culturas', 'cultura', 'perfil', 'planta', 'producao', 'maquina', 'equipamento', 'deposito', 'contratos',
-          'mercado', 'especializacao', 'livro', 'tiao']
+          'mercado', 'especializacao', 'livro', 'tiao', 'selos']
 BASE, POR_LINHA = 0xF0000, 128
 Y1 = (4, 127)        # alturas possíveis do texto normal (topo da maiúscula, coordenadas do baú)
 Y2 = (-4, 60)        # alturas possíveis do texto grande (2x)
@@ -518,7 +527,7 @@ for c in CULTURAS:
     json.dump({'parent': f'big:item/fazenda/{c}',
                'display': {'gui': {'rotation': [0, 0, 0], 'translation': [0, 0, 0], 'scale': [2.6, 2.6, 2.6]}}},
               open(f'{R}/models/item/gui/grande_{c}.json', 'w'))
-    json.dump({'model': {'type': 'minecraft:model', 'model': f'big:item/gui/grande_{c}'}},
+    json.dump({'model': {'type': 'minecraft:model', 'model': f'big:item/gui/grande_{c}'}, 'oversized_in_gui': True},
               open(f'{R}/items/gui/grande_{c}.json', 'w'), indent=1)
 # fases de crescimento para o painel de cultura: o mesmo modelo da planta, ampliado para caber no slot
 for c in CULTURAS:
@@ -534,7 +543,7 @@ for c in CULTURAS:
         json.dump({'parent': f'big:item/fazenda/planta_{c}_{e}',
                    'display': {'gui': {'rotation': [20, 45, 0], 'translation': tr, 'scale': [esc, esc, esc]}}},
                   open(f'{R}/models/item/gui/fase_{c}_{e}.json', 'w'))
-        json.dump({'model': {'type': 'minecraft:model', 'model': f'big:item/gui/fase_{c}_{e}'}},
+        json.dump({'model': {'type': 'minecraft:model', 'model': f'big:item/gui/fase_{c}_{e}'}, 'oversized_in_gui': True},
                   open(f'{R}/items/gui/fase_{c}_{e}.json', 'w'), indent=1)
 # ícone vazio: deixa o slot clicável sem desenhar nada (o desenho fica no fundo)
 im = Image.new('RGBA', (16, 16), (0, 0, 0, 0)); im.save(f'{R}/textures/item/gui/vazio.png')
