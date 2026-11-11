@@ -23,6 +23,7 @@ def hx(h, a=255):
 PAINEL, FUNDO, MOLDURA, ESCURO, CANTO = hx('2a1d14'), hx('1f150e'), hx('84cc16'), hx('1a120b'), hx('eab308')
 BORDA, ROTULO, POCO, POCO_BORDA, TRILHO = hx('3d2b1d'), hx('fde68a'), hx('1a120b'), hx('5b4532'), hx('120c08')
 MUTED, CLARO, VERDE_F, VERDE_B = hx('c9b89e'), hx('f5efe3'), hx('3f5d12'), hx('a3e635')
+OURO_T = hx('facc15')
 W, H, OX = 256, 222, 40                       # fundo; OX = quanto o fundo passa do baú para a esquerda
 
 # ================================================================== fonte de pixel (maiúsculas 5x7 + acentos)
@@ -53,6 +54,7 @@ F = {
  '(': ['01', '10', '10', '10', '10', '10', '01'], ')': ['10', '01', '01', '01', '01', '01', '10'],
  '=': ['000', '000', '111', '000', '111', '000', '000'], '\'': ['1', '1', '0', '0', '0', '0', '0'],
  '‹': ['001', '010', '100', '100', '100', '010', '001'], '›': ['100', '010', '001', '001', '001', '010', '100'],
+ '$': ['00100', '01111', '10100', '01110', '00101', '11110', '00100'],
  '■': ['0000', '1111', '1111', '1111', '1111', '0000', '0000'], '#': ['01010', '11111', '01010', '01010', '01010', '11111', '01010'],
 }
 ACENTO = {'Á': ('A', 'acute'), 'Ó': ('O', 'acute'), 'Ã': ('A', 'tilde'), 'Õ': ('O', 'tilde'), 'Ê': ('E', 'circ'), 'É': ('E', 'acute'),
@@ -147,7 +149,7 @@ def base():
     return img, d
 
 
-TRILHO_ITENS = ['INÍCIO', 'CULTURAS', 'AGRICULTOR', 'LOJA', 'AJUDA', 'FECHAR']
+TRILHO_ITENS = ['INÍCIO', 'CULTURAS', 'PRODUÇÃO', 'CONTRATOS', 'AGRICULTOR', 'LIVRO']
 
 
 def trilho_lateral(img, d, ativo):
@@ -181,10 +183,10 @@ salvar_fundo('inicio', img)
 img, d = base(); trilho_lateral(img, d, 1)
 for r in (0, 1):
     for c in range(2, 9): poco(d, c, r)
-cartao(d, 44, 53, 211, 70); texto(img, 48, 58, 'ESPECIAIS · EM BREVE', MUTED)
-for c in range(2, 7): poco(d, c, 3, hx('3d2b1d'), hx('17100a'))
+cartao(d, 44, 53, 211, 70); texto(img, 48, 58, 'ESPECIAIS · NÍVEL 12', MUTED)
+for c in range(2, 7): poco(d, c, 3)
 cartao(d, 44, 89, 211, 124)
-for i, s in enumerate(('CLIQUE NUMA CULTURA PARA', 'VER OS DETALHES. O NÍVEL 5', 'LIBERA AS CULTURAS NOVAS.')):
+for i, s in enumerate(('CLIQUE NUMA CULTURA PARA', 'VER OS DETALHES. NÍVEL 5:', 'CAMPO NOVO · 12: ESPECIAIS.')):
     texto(img, 48, 93 + 10 * i, s, MUTED)
 salvar_fundo('culturas', img)
 
@@ -195,30 +197,137 @@ texto(img, -34, 77, 'FASES', MUTED)
 for c in range(4): poco(d, c, 3)
 cartao(d, -36, 90, 77, 105, hx('d9f99d'), VERDE_F); texto(img, -30, 94, 'COMPRAR SEMENTES', hx('f7fee7'))
 cartao(d, -36, 108, 77, 123, hx('5b4532'), hx('3a2a1d')); texto(img, -30, 112, '‹ VOLTAR', hx('e7dcc8'))
-cartao(d, 82, 18, 211, 51)
-for i, s in enumerate(('PRONTA EM', 'COLHEITA', 'VENDA', 'DOURADA')): texto(img, 86, 20 + 8 * i, s, MUTED)
-cartao(d, 82, 53, 211, 87); texto(img, 86, 56, 'O QUE ELA PRECISA', ROTULO)
-for i, (s, c) in enumerate((('TERRA SECA: MEIA VEL.', '38bdf8'), ('POUCA LUZ: MEIA VEL.', 'fde047'), ('CHUVA: +25% VELOC.', '7dd3fc'))):
-    texto(img, 86, 64 + 8 * i, '■', hx(c)); texto(img, 93, 64 + 8 * i, s, CLARO)
+cartao(d, 82, 18, 211, 56)
+for i, s in enumerate(('PRONTA EM', 'COLHEITA', 'VENDA', 'DOURADA')): texto(img, 86, 21 + 9 * i, s, MUTED)
+cartao(d, 82, 58, 211, 87)
 cartao(d, 82, 89, 211, 124); texto(img, 86, 92, 'QUALIDADE PROVÁVEL', ROTULO)
 trilho(d, 86, 101, 207, 5)
 cartao(d, 170, 3, 211, 14, hx('65a30d'), hx('1a2e05'))
 salvar_fundo('cultura', img)
 
 # ---- perfil de Agricultor
-img, d = base(); trilho_lateral(img, d, 2)
+img, d = base(); trilho_lateral(img, d, 4)
 trilho(d, 46, 29, 209, 4)
 for c in range(2, 9): poco(d, c, 1); poco(d, c, 2)
 for c in range(2, 5): poco(d, c, 3)
 cartao(d, 99, 71, 211, 88, hx('a16207'), hx('2b2306'))
-cartao(d, 44, 89, 125, 124); texto(img, 48, 92, 'SEUS NÚMEROS', ROTULO)
-cartao(d, 129, 89, 211, 124); texto(img, 133, 92, 'RAMOS · NV 50', ROTULO)
+cartao(d, 44, 89, 125, 126); texto(img, 48, 92, 'SEUS NÚMEROS', ROTULO)
+cartao(d, 129, 89, 211, 126); texto(img, 133, 92, 'RAMOS · NV 50', ROTULO)
 for i, (s, c) in enumerate((('CULTIVADOR', 'bef264'), ('BOTÂNICO', '7dd3fc'), ('PRODUTOR', 'e7d6ae'))):
-    texto(img, 133, 101 + 8 * i, s, hx(c))
+    texto(img, 133, 101 + 9 * i, s, hx(c))
 salvar_fundo('perfil', img)
 
+
+def botao(d, x0, y0, x1, y1, on=False):
+    cartao(d, x0, y0, x1, y1, VERDE_B if on else hx('5b4532'), VERDE_F if on else hx('3a2a1d'))
+
+
+def tag(d):
+    cartao(d, 170, 3, 211, 14, hx('65a30d'), hx('1a2e05'))
+
+
+# ---- painel da planta / solo
+img, d = base(); tag(d)
+cartao(d, -32, 18, 64, 69, hx('5b4532'))
+cartao(d, -36, 71, 64, 124)
+cartao(d, 66, 18, 211, 69)
+cartao(d, 66, 71, 211, 124)
+salvar_fundo('planta', img)
+
+# ---- produção (lista de máquinas)
+img, d = base(); trilho_lateral(img, d, 2)
+for r in range(4):
+    for c in range(2, 9): poco(d, c, r)
+cartao(d, 44, 89, 211, 124)
+salvar_fundo('producao', img)
+
+# ---- máquina (maquete aprovada: entrada · lote · saída / receitas / botões)
+img, d = base(); tag(d)
+cartao(d, -36, 17, 42, 53, hx('3d2b1d'), hx('1f150e'))
+for i in range(4): poco(d, i % 2, i // 2)
+
+cartao(d, 43, 18, 131, 52)
+cartao(d, 132, 17, 211, 53, hx('65a30d'), hx('1f150e'))
+for i in range(4): poco(d, 7 + i % 2, i // 2, hx('65a30d'))
+
+cartao(d, -36, 54, 113, 124)
+for r in range(2, 6):
+    poco(d, 0, r)
+    if r > 2: ret(d, -32, 17 + 18 * r, 111, 17 + 18 * r, fill=BORDA)
+for r in range(2, 6): botao(d, 115, 17 + 18 * r + 1, 168, 17 + 18 * r + 17)
+salvar_fundo('maquina', img)
+
+# ---- equipamento (água / estufa)
+img, d = base()
+cartao(d, -32, 18, 211, 112)
+botao(d, 7, 17 + 18 * 5 + 1, 78, 17 + 18 * 5 + 17)
+botao(d, 97, 17 + 18 * 5 + 1, 168, 17 + 18 * 5 + 17)
+salvar_fundo('equipamento', img)
+
+# ---- depósito
+img, d = base()
+for c in range(5): poco(d, c, 0)
+cartao(d, 96, 18, 211, 34)
+for r in range(1, 5):
+    for c in range(9): poco(d, c, r)
+ry = 17 + 18 * 5
+botao(d, 7, ry + 1, 24, ry + 17); texto(img, 13, ry + 6, '‹', CLARO)
+botao(d, 25, ry + 1, 60, ry + 17)
+botao(d, 61, ry + 1, 78, ry + 17); texto(img, 68, ry + 6, '›', CLARO)
+botao(d, 79, ry + 1, 114, ry + 17)
+botao(d, 115, ry + 1, 168, ry + 17, True)
+salvar_fundo('deposito', img)
+
+# ---- contratos
+img, d = base(); trilho_lateral(img, d, 3)
+for r in range(5):
+    y = 17 + 18 * r
+    poco(d, 2, r)
+    cartao(d, 61, y + 1, 211, y + 17)
+ry = 17 + 18 * 5
+botao(d, 43, ry + 1, 96, ry + 17)
+botao(d, 97, ry + 1, 132, ry + 17)
+botao(d, 133, ry + 1, 168, ry + 17)
+salvar_fundo('contratos', img)
+
+# ---- mercado
+img, d = base(); trilho_lateral(img, d, 3)
+for c in range(2, 9): poco(d, c, 0)
+for r in range(1, 5):
+    for c in range(2, 9): poco(d, c, r)
+ry = 17 + 18 * 5
+botao(d, 43, ry + 1, 60, ry + 17); texto(img, 49, ry + 6, '‹', CLARO)
+botao(d, 61, ry + 1, 96, ry + 17)
+botao(d, 97, ry + 1, 114, ry + 17); texto(img, 104, ry + 6, '›', CLARO)
+botao(d, 115, ry + 1, 168, ry + 17, True)
+salvar_fundo('mercado', img)
+
+# ---- especialização
+img, d = base()
+for k, b in enumerate(('84cc16', '38bdf8', 'd97706')):
+    cartao(d, -36, 17 + 36 * k + 1, 211, 17 + 36 * k + 35, hx(b))
+salvar_fundo('especializacao', img)
+
+# ---- Livro de Sementes
+img, d = base(); trilho_lateral(img, d, 5)
+for c in range(2, 9): poco(d, c, 0); poco(d, c, 1); poco(d, c, 3)
+for c in range(2, 7): poco(d, c, 2, hx('a16207'))
+botao(d, 133, 17 + 18 * 2 + 1, 168, 17 + 18 * 2 + 17); texto(img, 138, 17 + 36 + 6, 'CONQ.', OURO_T)
+cartao(d, 44, 89, 211, 124)
+botao(d, 133, 92, 168, 121)
+salvar_fundo('livro', img)
+
+# ---- Tião
+img, d = base()
+cartao(d, -36, 18, 211, 50)
+for (x0, x1) in ((5, 60), (61, 114), (115, 170)):
+    cartao(d, x0, 53, x1, 124, hx('a16207'), hx('2b2306'))
+for c in (1, 4, 7): poco(d, c, 3, hx('a16207'))
+salvar_fundo('tiao', img)
+
 # ================================================================== fonte big:gui
-FUNDOS = ['inicio', 'culturas', 'cultura', 'perfil']
+FUNDOS = ['inicio', 'culturas', 'cultura', 'perfil', 'planta', 'producao', 'maquina', 'equipamento', 'deposito', 'contratos',
+          'mercado', 'especializacao', 'livro', 'tiao']
 BASE, POR_LINHA = 0xF0000, 128
 Y1 = (4, 127)        # alturas possíveis do texto normal (topo da maiúscula, coordenadas do baú)
 Y2 = (-4, 60)        # alturas possíveis do texto grande (2x)
@@ -404,13 +513,29 @@ for n, c in (('ramo_cultivador', 'bef264'), ('ramo_botanico', '7dd3fc'), ('ramo_
 
 # colheita ampliada para a vitrine 3x3 do painel de cultura
 CULTURAS = ['morango', 'milho', 'pimenta', 'mandioca', 'cafe', 'abacaxi', 'tomate', 'soja', 'arroz', 'algodao', 'cana', 'abobora',
-            'melancia', 'uva']
+            'melancia', 'uva', 'baunilha', 'cacau', 'maracuja', 'pitaya', 'biquinho']
 for c in CULTURAS:
     json.dump({'parent': f'big:item/fazenda/{c}',
                'display': {'gui': {'rotation': [0, 0, 0], 'translation': [0, 0, 0], 'scale': [2.6, 2.6, 2.6]}}},
               open(f'{R}/models/item/gui/grande_{c}.json', 'w'))
     json.dump({'model': {'type': 'minecraft:model', 'model': f'big:item/gui/grande_{c}'}},
               open(f'{R}/items/gui/grande_{c}.json', 'w'), indent=1)
+# fases de crescimento para o painel de cultura: o mesmo modelo da planta, ampliado para caber no slot
+for c in CULTURAS:
+    for e in range(4):
+        pai = json.load(open(f'{R}/models/item/fazenda/planta_{c}_{e}.json'))
+        els = pai.get('elements', [])
+        mn = [min(min(el['from'][i], el['to'][i]) for el in els) for i in range(3)]
+        mx = [max(max(el['from'][i], el['to'][i]) for el in els) for i in range(3)]
+        alt = mx[1] - mn[1]; larg = max(mx[0] - mn[0], mx[2] - mn[2]) * 1.2
+        esc = round(min(1.6, 14.5 / max(alt, larg, 1)), 3)
+        cy = (mn[1] + mx[1]) / 2
+        tr = [round(-((mn[0] + mx[0]) / 2 - 8) * esc * 0.7, 2), round(-(cy - 8) * esc, 2), 0]
+        json.dump({'parent': f'big:item/fazenda/planta_{c}_{e}',
+                   'display': {'gui': {'rotation': [20, 45, 0], 'translation': tr, 'scale': [esc, esc, esc]}}},
+                  open(f'{R}/models/item/gui/fase_{c}_{e}.json', 'w'))
+        json.dump({'model': {'type': 'minecraft:model', 'model': f'big:item/gui/fase_{c}_{e}'}},
+                  open(f'{R}/items/gui/fase_{c}_{e}.json', 'w'), indent=1)
 # ícone vazio: deixa o slot clicável sem desenhar nada (o desenho fica no fundo)
 im = Image.new('RGBA', (16, 16), (0, 0, 0, 0)); im.save(f'{R}/textures/item/gui/vazio.png')
 json.dump({'parent': 'minecraft:item/generated', 'textures': {'layer0': 'big:item/gui/vazio'}}, open(f'{R}/models/item/gui/vazio.json', 'w'))
