@@ -133,6 +133,19 @@ $SAFRAS = [
     ['mandioca', 'Mandioca', 25, '2–4', 3.0, false, 8, 'Raiz farta. Devolve a rama na colheita.'],
     ['cafe', 'Café', 35, '3–6', 4.0, true, 60, 'Demora, mas produz para sempre.'],
     ['abacaxi', 'Abacaxi', 45, '1', 18.0, false, 35, 'Um fruto por planta, mas vale muito.'],
+    ['tomate', 'Tomate', 18, '2–4', 2.2, true, 15, 'Pé de tomate que segue produzindo. Agricultor 5.'],
+    ['soja', 'Soja', 20, '2–4', 1.8, false, 6, 'Grão rápido que devolve nitrogênio à terra. Agricultor 5.'],
+    ['arroz', 'Arroz', 22, '3–5', 1.6, false, 6, 'Cachos de grãos para o moinho. Agricultor 5.'],
+    ['algodao', 'Algodão', 28, '2–4', 2.6, false, 12, 'Fibra branca para tecer. Agricultor 5.'],
+    ['cana', 'Cana-de-açúcar', 30, '2–4', 2.8, true, 20, 'Rebrota depois do corte. Agricultor 5.'],
+    ['abobora', 'Abóbora', 35, '1–2', 8.0, false, 25, 'Pesada e farta. Agricultor 5.'],
+    ['melancia', 'Melancia', 40, '1–2', 9.0, false, 20, 'Grande, doce e valiosa. Agricultor 5.'],
+    ['uva', 'Uva', 50, '3–6', 3.5, true, 70, 'Parreira que produz para sempre. Agricultor 5.'],
+    ['baunilha', 'Baunilha', 55, '1–2', 12.0, true, 150, 'Especial (Agricultor 12). Só cresce em estufa.'],
+    ['cacau', 'Cacau', 45, '2–4', 4.0, true, 90, 'Especial (Agricultor 12). Só cresce em estufa.'],
+    ['maracuja', 'Maracujá', 30, '2–3', 3.2, true, 40, 'Especial (Agricultor 12). Trepadeira de fruto azedinho.'],
+    ['pitaya', 'Pitaya', 40, '1–3', 6.0, true, 120, 'Especial (Agricultor 12). Precisa de muita luz.'],
+    ['biquinho', 'Pimenta-biquinho', 22, '3–6', 2.2, true, 30, 'Especial (Agricultor 12). Pimentinha doce.'],
 ];
 
 $PEIXES = [
@@ -203,7 +216,7 @@ $COMANDOS = [
         ['/saldotop', 'Os mais ricos do servidor.'], ['/loja [categoria]', 'Abre a loja (comprar e vender).'],
         ['/vender [tudo]', 'Vende o item da mão ou tudo o que a loja compra.'],
         ['/leilao', 'Leilão entre jogadores.'], ['/leilao vender <preço>', 'Anuncia o item da mão.'], ['/leilao meus | coletar', 'Seus anúncios e itens para coletar.'],
-        ['/fazenda', 'Guia das safras.'], ['/pesca [peixes|recordes]', 'Coleção de peixes e recordes.'], ['/chaves', 'Suas chaves de lootbox e quanto falta para a próxima.'],
+        ['/fazenda', 'Menu da fazenda: culturas, produção, contratos, Agricultor e Livro.'], ['/fazenda encomenda <item> <qtd> <preço>', 'Encomenda de colheitas ou produtos com dinheiro reservado.'], ['/fazenda selos', 'Feira dos selos: títulos e decorações.'], ['/pesca [peixes|recordes]', 'Coleção de peixes e recordes.'], ['/chaves', 'Suas chaves de lootbox e quanto falta para a próxima.'],
     ],
     'Terreno e casas' => [
         ['/kit inicial', 'Armadura e ferramentas de ferro (uma vez só).'], ['/kit plantação', '5 sementes de cada e enxada de pedra (a cada 24h).'],
