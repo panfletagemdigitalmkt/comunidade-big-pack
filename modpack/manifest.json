@@ -1,0 +1,19 @@
+{
+ "versao": "0.1.0",
+ "minecraft": "26.3",
+ "neoforge": "26.3.0.115",
+ "arquivos": [
+  {
+   "caminho": "mods/bigclasses-0.1.0.jar",
+   "sha1": "9b173c3339477694e9af9904387fab9413b185ec",
+   "tamanho": 87111,
+   "url": "https://cdn.jsdelivr.net/gh/panfletagemdigitalmkt/comunidade-big-pack@e7fd63fa97b9a6a9a5fd1e63f41dcfa6051c95e0/modpack/mods/bigclasses-0.1.0.jar"
+  },
+  {
+   "caminho": "mods/bigcore-0.1.0.jar",
+   "sha1": "74ac0a749944d535ee12e957233e4c41f6d41f55",
+   "tamanho": 20758,
+   "url": "https://cdn.jsdelivr.net/gh/panfletagemdigitalmkt/comunidade-big-pack@e7fd63fa97b9a6a9a5fd1e63f41dcfa6051c95e0/modpack/mods/bigcore-0.1.0.jar"
+  }
+ ]
+}
