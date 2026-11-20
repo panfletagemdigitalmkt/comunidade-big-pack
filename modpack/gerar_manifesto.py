@@ -13,6 +13,6 @@ for pasta in ('mods', 'config', 'resourcepacks'):
             p = os.path.join(r, f); rel = os.path.relpath(p, raiz).replace(os.sep, '/')
             dados = open(p, 'rb').read()
             arquivos.append({'caminho': rel, 'sha1': hashlib.sha1(dados).hexdigest(), 'tamanho': len(dados),
-                             'url': f'https://cdn.jsdelivr.net/gh/panfletagemdigitalmkt/comunidade-big-pack@{commit}/modpack/{rel}'})
+                             'url': f'https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/{commit}/modpack/{rel}'})
 json.dump({'versao': versao, 'minecraft': '26.3', 'neoforge': '26.3.0.115', 'arquivos': arquivos}, open(os.path.join(raiz, 'manifest.json'), 'w'), ensure_ascii=False, indent=1)
 print(len(arquivos), 'arquivos')
