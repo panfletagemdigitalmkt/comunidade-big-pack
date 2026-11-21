@@ -1,5 +1,5 @@
 {
- "versao": "0.6.0",
+ "versao": "0.7.0",
  "minecraft": "26.3",
  "neoforge": "26.3.0.115",
  "arquivos": [
@@ -7,91 +7,97 @@
    "caminho": "mods/bigadmin-0.1.0.jar",
    "sha1": "ae4b05caf41d3f2fb8b4e8a91fa2a950ebbc01a8",
    "tamanho": 17725,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigadmin-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigadmin-0.1.0.jar"
   },
   {
    "caminho": "mods/bigarvore-0.1.0.jar",
    "sha1": "4c3e0092fb02d284ce7dbc49bc24e0db2f0f0c06",
    "tamanho": 69578,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigarvore-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigarvore-0.1.0.jar"
   },
   {
    "caminho": "mods/bigcaixas-0.1.0.jar",
    "sha1": "8ecd14e17d161f33f00ae6805bd0224327f93be2",
    "tamanho": 35702,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigcaixas-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigcaixas-0.1.0.jar"
   },
   {
    "caminho": "mods/bigcash-0.1.0.jar",
    "sha1": "df7155720e907e894396a6d5368662ab77e1996c",
    "tamanho": 26990,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigcash-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigcash-0.1.0.jar"
   },
   {
    "caminho": "mods/bigchat-0.1.0.jar",
    "sha1": "6a7722de2fa2594388359e71a16335b17aa87a3e",
    "tamanho": 15777,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigchat-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigchat-0.1.0.jar"
   },
   {
    "caminho": "mods/bigclas-0.1.0.jar",
    "sha1": "f1b24f7066c71d96b6c71eef06fddd64161d4ce4",
    "tamanho": 24152,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigclas-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigclas-0.1.0.jar"
   },
   {
    "caminho": "mods/bigclasses-0.1.0.jar",
    "sha1": "f8166c72689cebfcdce8f88b93bbbd0dc6578c28",
    "tamanho": 87839,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigclasses-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigclasses-0.1.0.jar"
   },
   {
    "caminho": "mods/bigcore-0.1.0.jar",
    "sha1": "6d66e9ab88e42c4227724927fa28ce0cc27ee42e",
    "tamanho": 33081,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigcore-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigcore-0.1.0.jar"
   },
   {
    "caminho": "mods/bigcosmeticos-0.1.0.jar",
    "sha1": "541bdfed25750b911bcd509f19be2d2c4d5946a9",
    "tamanho": 17587,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigcosmeticos-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigcosmeticos-0.1.0.jar"
   },
   {
    "caminho": "mods/bigessenciais-0.1.0.jar",
    "sha1": "984f066ff7cf75bc666a4ad527069eda11869d36",
    "tamanho": 27625,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigessenciais-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigessenciais-0.1.0.jar"
   },
   {
    "caminho": "mods/bigloja-0.1.0.jar",
    "sha1": "4d0e63c89360d07fa20936ee812ddcf87a5f0dfb",
    "tamanho": 33089,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigloja-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigloja-0.1.0.jar"
   },
   {
    "caminho": "mods/biglootbox-0.1.0.jar",
    "sha1": "918bd93f25b12543780b125ae3297a3fa6ee8570",
    "tamanho": 30778,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/biglootbox-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/biglootbox-0.1.0.jar"
+  },
+  {
+   "caminho": "mods/bigmasmorra-0.1.0.jar",
+   "sha1": "8ad453942b1b5733ffe3f902107a3dadfb7ff016",
+   "tamanho": 78419,
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigmasmorra-0.1.0.jar"
   },
   {
    "caminho": "mods/bigpesca-0.1.0.jar",
    "sha1": "ba67d97988325fb3a93915030fa581516b713df0",
    "tamanho": 62313,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigpesca-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigpesca-0.1.0.jar"
   },
   {
    "caminho": "mods/bigrecursos-0.1.0.jar",
    "sha1": "86e7317df09632fa556e0353d3cc87a6c4b7e954",
    "tamanho": 2325387,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigrecursos-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigrecursos-0.1.0.jar"
   },
   {
    "caminho": "mods/bigterrenos-0.1.0.jar",
    "sha1": "5add38509338816188ff75142a8b917f066000ea",
    "tamanho": 19418,
-   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/0fefe64b76fbd3744789609402e02bd3e48acad5/modpack/mods/bigterrenos-0.1.0.jar"
+   "url": "https://raw.githubusercontent.com/panfletagemdigitalmkt/comunidade-big-pack/c2306f1/modpack/mods/bigterrenos-0.1.0.jar"
   }
  ]
 }
